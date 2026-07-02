@@ -11,7 +11,7 @@ SaaS de organização financeira pessoal com dashboard, lançamentos, metas e o 
 
 1. Copie `.env.example` para `.env.local`.
 2. Preencha `NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
-3. Em uma base nova, execute [`src/config/database.sql`](src/config/database.sql) no SQL Editor do Supabase uma vez. Se as tabelas já existirem, execute somente [`src/config/migrations/001_auth_profile_trigger.sql`](src/config/migrations/001_auth_profile_trigger.sql).
+3. Execute o arquivo único [`src/config/database.sql`](src/config/database.sql) no SQL Editor do Supabase. Ele funciona tanto em uma base nova quanto sobre o schema anterior do FinMb.
 4. Instale e inicie o projeto:
 
 ```bash

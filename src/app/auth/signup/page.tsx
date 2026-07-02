@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import { AuthShell } from "@/components/auth/auth-shell";
 import { SignupForm } from "@/components/auth/signup-form";
-
-export const metadata: Metadata = { title: "Criar conta" };
-
-export default function SignupPage() {
-  return <AuthShell title="Sua clareza começa aqui." description="Crie sua conta gratuita e monte seu primeiro panorama financeiro em poucos minutos."><SignupForm /></AuthShell>;
-}
+export const metadata:Metadata={title:"Criar sua conta"};
+export default function SignupPage(){return <AuthShell title="Comece sua organização pessoal com o FinMb." description="Crie sua conta e conecte finanças, rotina e alimentação em uma experiência inteligente."><SignupForm/></AuthShell>}

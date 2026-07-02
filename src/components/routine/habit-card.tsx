@@ -1,0 +1,8 @@
+"use client";
+import { Check, Flame, Trash2 } from "lucide-react";
+import type { Habit } from "@/types";
+import { cn } from "@/lib/utils";
+
+export function HabitCard({ habit, onToggle, onDelete }: { habit: Habit; onToggle: () => void; onDelete?: () => void }) {
+  return <div className={cn("life-card group rounded-2xl p-4", habit.completed && "border-emerald-500/25 bg-emerald-500/[.025]")}><div className="flex items-center gap-3"><button onClick={onToggle} aria-label={habit.completed ? "Desmarcar hábito" : "Concluir hábito"} className={cn("grid size-10 shrink-0 place-items-center rounded-xl border", habit.completed ? "border-emerald-500 bg-emerald-500 text-white" : "border-zinc-200 bg-zinc-50 text-transparent hover:border-gold-400 dark:border-white/10 dark:bg-white/[.04]")}><Check className="size-5" /></button><div className="min-w-0 flex-1"><p className={cn("text-sm font-semibold", habit.completed && "text-zinc-400 line-through")}>{habit.title}</p><p className="mt-0.5 truncate text-[11px] text-zinc-500">{habit.description}</p></div><div className="flex items-center gap-1.5 rounded-full bg-orange-500/10 px-2 py-1 text-[10px] font-bold text-orange-500"><Flame className="size-3" />{habit.streak}</div>{onDelete && <button onClick={onDelete} className="hidden rounded-lg p-2 text-zinc-400 hover:bg-red-500/10 hover:text-red-500 group-hover:block" aria-label="Excluir hábito"><Trash2 className="size-4" /></button>}</div><div className="mt-3 flex items-center justify-between border-t border-zinc-100 pt-3 text-[10px] text-zinc-400 dark:border-white/[.06]"><span>{habit.frequency}</span><span>{habit.completed ? "Concluído hoje" : "Pendente hoje"}</span></div></div>;
+}

@@ -47,3 +47,7 @@ export interface Goal {
   created_at: string;
   updated_at: string;
 }
+
+export interface Habit { id: string; title: string; description: string; frequency: string; completed: boolean; streak: number; }
+export interface LifeTask { id: string; title: string; description: string; status: "pending" | "completed"; priority: "low" | "medium" | "high"; dueDate: string; }
+export interface Meal { id: string; name: string; calories: number; proteins: number; carbs: number; fats: number; mealTime: string; imageUrl?: string; notes: string; }

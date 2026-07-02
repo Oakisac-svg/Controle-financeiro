@@ -1,0 +1,10 @@
+"use client";
+import { useState } from "react";
+import { Plus } from "lucide-react";
+import { useLifeData } from "@/hooks/useLifeData";
+import { TaskCard } from "@/components/routine/task-card";
+import { PageHeader } from "@/components/life/page-header";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { toast } from "@/hooks/useToast";
+export default function TasksPage(){const data=useLifeData();const[show,setShow]=useState(false);const[title,setTitle]=useState("");function add(){if(!title.trim())return;data.addTask({title:title.trim(),description:"Adicionada ao planejamento pessoal",priority:"medium",dueDate:new Date().toISOString().slice(0,10)});setTitle("");setShow(false);toast({title:"Tarefa criada",variant:"success"})}return <div className="space-y-7"><PageHeader eyebrow="Rotina · Tarefas" title="O essencial, em movimento." description="Transforme planos em próximos passos claros, sem sobrecarregar sua agenda." action={<Button onClick={()=>setShow(v=>!v)} className="rounded-xl bg-gold-400 text-black"><Plus className="mr-2 size-4"/>Nova tarefa</Button>}/>{show&&<div className="life-card flex flex-col gap-3 rounded-2xl p-4 sm:flex-row"><Input value={title} onChange={e=>setTitle(e.target.value)} onKeyDown={e=>e.key==="Enter"&&add()} placeholder="O que precisa ser feito?" className="h-11 rounded-xl" autoFocus/><Button onClick={add} className="h-11 rounded-xl bg-zinc-950 text-white dark:bg-gold-400 dark:text-black">Criar tarefa</Button></div>}<div className="flex gap-2">{["Todas","Pendentes","Concluídas"].map((x,i)=><button key={x} className={`rounded-full px-3 py-1.5 text-[11px] font-semibold ${i===0?"bg-zinc-950 text-white dark:bg-gold-400 dark:text-black":"border border-zinc-200 text-zinc-500 dark:border-white/10"}`}>{x}</button>)}</div><div className="grid gap-3 lg:grid-cols-2">{data.tasks.map(t=><TaskCard key={t.id} task={t} onToggle={()=>data.toggleTask(t.id)} onDelete={()=>data.deleteTask(t.id)}/>)}</div></div>}
